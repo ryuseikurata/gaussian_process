@@ -20,6 +20,8 @@ function cov(k::Kernel, xs1, xs2)
     end
 end
 
+cov(k::Kernel, xs) = cov(k, xs, xs)
+
 """
 Gaussian Kernel
 """
