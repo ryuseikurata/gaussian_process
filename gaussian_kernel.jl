@@ -1,5 +1,7 @@
+
 abstract type Kernel end
 
+# 分散共分散行列を生成
 function cov(k::Kernel, xs1, xs2)
     # covariance matrix
 
@@ -14,10 +16,11 @@ function cov(k::Kernel, xs1, xs2)
 
     # 1から寸法ぶん
     for i in 1:n1
-        for j in i:n2
+        for j in 1:n2
             c[i,j] = ker(k, xs1[i, :], xs2[j,:])
         end
     end
+    return c
 end
 
 cov(k::Kernel, xs) = cov(k, xs, xs)
@@ -26,7 +29,7 @@ cov(k::Kernel, xs) = cov(k, xs, xs)
 Gaussian Kernel
 """
 
-mutable struct GasssianKernel <: Kernel
+mutable struct GaussianKernel <: Kernel
     theta::Float64
 end
 
